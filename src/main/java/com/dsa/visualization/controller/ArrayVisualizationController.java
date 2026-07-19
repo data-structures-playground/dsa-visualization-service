@@ -20,7 +20,7 @@ import com.dsa.visualization.service.ArrayVisualizationService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/v1/arrays")
+@RequestMapping("/vis-api/v1/arrays")
 @RequiredArgsConstructor
 public class ArrayVisualizationController {
 
@@ -41,9 +41,14 @@ public class ArrayVisualizationController {
         return ResponseEntity.ok(arrayVisualizationService.update(index, request.value()));
     }
 
-    @DeleteMapping("/{index}")
+        @DeleteMapping("/{index}")
     public ResponseEntity<ArrayStateResponse> delete(@PathVariable int index) {
         return ResponseEntity.ok(arrayVisualizationService.delete(index));
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<ArrayStateResponse> add(@RequestBody Integer value) {
+        return ResponseEntity.ok(arrayVisualizationService.add(value));
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

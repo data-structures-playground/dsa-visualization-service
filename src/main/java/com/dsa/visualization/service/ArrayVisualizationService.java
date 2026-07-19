@@ -30,10 +30,16 @@ public class ArrayVisualizationService {
         return toResponse("Value updated at index " + index + ".");
     }
 
-    public synchronized ArrayStateResponse delete(int index) {
+        public synchronized ArrayStateResponse delete(int index) {
         validateIndex(index);
         currentArray.remove(index);
         return toResponse("Value removed at index " + index + ".");
+    }
+
+    public synchronized ArrayStateResponse add(Integer value) {
+        validateValue(value);
+        currentArray.add(value);
+        return toResponse("Value " + value + " added to the end of the array.");
     }
 
     private ArrayStateResponse toResponse(String message) {
